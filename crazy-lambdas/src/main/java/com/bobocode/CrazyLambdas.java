@@ -2,6 +2,7 @@ package com.bobocode;
 
 import java.math.BigDecimal;
 import java.util.Map;
+import java.util.Random;
 import java.util.function.*;
 
 public class CrazyLambdas {
@@ -12,7 +13,7 @@ public class CrazyLambdas {
      * @return a string supplier
      */
     public static Supplier<String> helloSupplier() {
-        throw new UnsupportedOperationException("It's your job to implement this method"); // todo
+        return () -> "Hello";
     }
 
     /**
@@ -21,7 +22,7 @@ public class CrazyLambdas {
      * @return a string predicate
      */
     public static Predicate<String> isEmptyPredicate() {
-        throw new UnsupportedOperationException("It's your job to implement this method"); // todo
+        return String::isEmpty;
     }
 
     /**
@@ -31,7 +32,8 @@ public class CrazyLambdas {
      * @return function that repeats Strings
      */
     public static BiFunction<String, Integer, String> stringMultiplier() {
-        throw new UnsupportedOperationException("It's your job to implement this method"); // todo
+        // IntelliJIDEA was shorted my solution
+        return (str, n) -> String.valueOf(str).repeat(Math.max(0, n));
     }
 
     /**
@@ -41,7 +43,7 @@ public class CrazyLambdas {
      * @return function that converts adds dollar sign
      */
     public static Function<BigDecimal, String> toDollarStringFunction() {
-        throw new UnsupportedOperationException("It's your job to implement this method"); // todo
+        return (str) -> "$" + str;
     }
 
     /**
@@ -53,7 +55,7 @@ public class CrazyLambdas {
      * @return a string predicate
      */
     public static Predicate<String> lengthInRangePredicate(int min, int max) {
-        throw new UnsupportedOperationException("It's your job to implement this method"); // todo
+        return (strLength) -> (min <= strLength.length() && strLength.length() < max);
     }
 
     /**
@@ -62,7 +64,7 @@ public class CrazyLambdas {
      * @return int supplier
      */
     public static IntSupplier randomIntSupplier() {
-        throw new UnsupportedOperationException("It's your job to implement this method"); // todo
+        return () -> new Random().nextInt();
     }
 
 
@@ -72,7 +74,7 @@ public class CrazyLambdas {
      * @return int operation
      */
     public static IntUnaryOperator boundedRandomIntSupplier() {
-        throw new UnsupportedOperationException("It's your job to implement this method"); // todo
+        return (value) -> new Random().nextInt(value);
     }
 
     /**
@@ -81,7 +83,7 @@ public class CrazyLambdas {
      * @return square operation
      */
     public static IntUnaryOperator intSquareOperation() {
-        throw new UnsupportedOperationException("It's your job to implement this method"); // todo
+        return (value) -> value * value;
     }
 
     /**
@@ -90,7 +92,8 @@ public class CrazyLambdas {
      * @return binary sum operation
      */
     public static LongBinaryOperator longSumOperation() {
-        throw new UnsupportedOperationException("It's your job to implement this method"); // todo
+        // Idea was shorted my solution
+        return Long::sum;
     }
 
     /**
@@ -99,7 +102,7 @@ public class CrazyLambdas {
      * @return string to int converter
      */
     public static ToIntFunction<String> stringToIntConverter() {
-        throw new UnsupportedOperationException("It's your job to implement this method"); // todo
+        return Integer::valueOf;
     }
 
     /**
@@ -110,7 +113,7 @@ public class CrazyLambdas {
      * @return a function supplier
      */
     public static Supplier<IntUnaryOperator> nMultiplyFunctionSupplier(int n) {
-        throw new UnsupportedOperationException("It's your job to implement this method"); // todo
+        return () -> x -> x * n;
     }
 
     /**
@@ -119,7 +122,7 @@ public class CrazyLambdas {
      * @return function that composes functions with trim() function
      */
     public static UnaryOperator<Function<String, String>> composeWithTrimFunction() {
-        throw new UnsupportedOperationException("It's your job to implement this method"); // todo
+        return str -> str.compose(String::trim);
     }
 
     /**
@@ -130,7 +133,11 @@ public class CrazyLambdas {
      * @return a thread supplier
      */
     public static Supplier<Thread> runningThreadSupplier(Runnable runnable) {
-        throw new UnsupportedOperationException("It's your job to implement this method"); // todo
+        return () -> {
+            Thread thread = new Thread(runnable);
+            thread.start();
+            return thread;
+        };
     }
 
     /**
@@ -139,7 +146,7 @@ public class CrazyLambdas {
      * @return a runnable consumer
      */
     public static Consumer<Runnable> newThreadRunnableConsumer() {
-        throw new UnsupportedOperationException("It's your job to implement this method"); // todo
+        return (runnable) -> new Thread(runnable).start();
     }
 
     /**
@@ -149,7 +156,11 @@ public class CrazyLambdas {
      * @return a function that transforms runnable into a thread supplier
      */
     public static Function<Runnable, Supplier<Thread>> runnableToThreadSupplierFunction() {
-        throw new UnsupportedOperationException("It's your job to implement this method"); // todo
+        return (runnable) -> () -> {
+            Thread thread = new Thread(runnable);
+            thread.start();
+            return thread;
+        };
     }
 
     /**
@@ -173,7 +184,7 @@ public class CrazyLambdas {
      * @return a high-order function that fetches a function from a function map by a given name or returns identity()
      */
     public static BiFunction<Map<String, IntUnaryOperator>, String, IntUnaryOperator> functionLoader() {
-        throw new UnsupportedOperationException("It's your job to implement this method"); // todo
+        return (map, name) -> map.getOrDefault(name, IntUnaryOperator.identity());
     }
 
     /**
@@ -182,7 +193,7 @@ public class CrazyLambdas {
      * @return a supplier instance
      */
     public static Supplier<Supplier<Supplier<String>>> trickyWellDoneSupplier() {
-        throw new UnsupportedOperationException("It's your job to implement this method"); // todo
+        return () -> () -> () -> "WELL DONE!";
     }
 }
 
