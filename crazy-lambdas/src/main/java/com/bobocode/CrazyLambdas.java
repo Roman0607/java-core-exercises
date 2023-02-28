@@ -2,6 +2,7 @@ package com.bobocode;
 
 import java.math.BigDecimal;
 import java.util.Map;
+import java.util.Random;
 import java.util.function.*;
 
 public class CrazyLambdas {
@@ -12,7 +13,7 @@ public class CrazyLambdas {
      * @return a string supplier
      */
     public static Supplier<String> helloSupplier() {
-        throw new UnsupportedOperationException("It's your job to implement this method"); // todo
+        return () -> "Hello";
     }
 
     /**
@@ -21,7 +22,7 @@ public class CrazyLambdas {
      * @return a string predicate
      */
     public static Predicate<String> isEmptyPredicate() {
-        throw new UnsupportedOperationException("It's your job to implement this method"); // todo
+        return String::isEmpty;
     }
 
     /**
@@ -31,7 +32,8 @@ public class CrazyLambdas {
      * @return function that repeats Strings
      */
     public static BiFunction<String, Integer, String> stringMultiplier() {
-        throw new UnsupportedOperationException("It's your job to implement this method"); // todo
+        // IntelliJIDEA was shorted my solution
+        return (str, n) -> String.valueOf(str).repeat(Math.max(0, n));
     }
 
     /**
@@ -41,7 +43,7 @@ public class CrazyLambdas {
      * @return function that converts adds dollar sign
      */
     public static Function<BigDecimal, String> toDollarStringFunction() {
-        throw new UnsupportedOperationException("It's your job to implement this method"); // todo
+        return (str) -> "$" + str;
     }
 
     /**
@@ -53,7 +55,7 @@ public class CrazyLambdas {
      * @return a string predicate
      */
     public static Predicate<String> lengthInRangePredicate(int min, int max) {
-        throw new UnsupportedOperationException("It's your job to implement this method"); // todo
+        return (strLength) -> (min <= strLength.length() && strLength.length() < max);
     }
 
     /**
@@ -62,7 +64,7 @@ public class CrazyLambdas {
      * @return int supplier
      */
     public static IntSupplier randomIntSupplier() {
-        throw new UnsupportedOperationException("It's your job to implement this method"); // todo
+        return () -> new Random().nextInt();
     }
 
 
@@ -72,7 +74,7 @@ public class CrazyLambdas {
      * @return int operation
      */
     public static IntUnaryOperator boundedRandomIntSupplier() {
-        throw new UnsupportedOperationException("It's your job to implement this method"); // todo
+        return (value) -> new Random().nextInt(value);
     }
 
     /**
@@ -81,7 +83,7 @@ public class CrazyLambdas {
      * @return square operation
      */
     public static IntUnaryOperator intSquareOperation() {
-        throw new UnsupportedOperationException("It's your job to implement this method"); // todo
+        return (value) -> value * value;
     }
 
     /**
@@ -90,7 +92,8 @@ public class CrazyLambdas {
      * @return binary sum operation
      */
     public static LongBinaryOperator longSumOperation() {
-        throw new UnsupportedOperationException("It's your job to implement this method"); // todo
+        // Idea was shorted my solution
+        return Long::sum;
     }
 
     /**
@@ -99,7 +102,7 @@ public class CrazyLambdas {
      * @return string to int converter
      */
     public static ToIntFunction<String> stringToIntConverter() {
-        throw new UnsupportedOperationException("It's your job to implement this method"); // todo
+        return Integer::valueOf;
     }
 
     /**
